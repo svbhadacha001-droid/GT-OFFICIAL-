@@ -3,7 +3,7 @@ import os
 
 app = Flask(__name__)
 
-# તમારો નવો લોગો બેકગ્રાઉન્ડમાં સેટ કરી દીધો છે
+# ફાઈનલ કોડ
 html_design = """
 <!DOCTYPE html>
 <html lang="gu">
@@ -13,7 +13,7 @@ html_design = """
     <title>GT OFFICIAL ♛</title>
     <style>
         body { 
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.imgur.com/G58Hw4H.jpeg'); 
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://i.imgur.com/vH9Jj8v.jpeg'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -33,6 +33,7 @@ html_design = """
         .rule-list li::before { content: '♛'; position: absolute; left: 0; }
         .hidden { display: none; }
         h1 { color: #ffd700; text-shadow: 2px 2px 10px #000; }
+        .footer { font-size: 10px; color: gray; margin-top: 30px; opacity: 0.7; }
     </style>
 </head>
 <body>
@@ -68,6 +69,8 @@ html_design = """
                 </select>
                 <button class="btn" onclick="submitRequest()">SUBMIT REQUEST</button>
             </div>
+            
+            <div class="footer">Created by SATISH</div>
         </div>
     </div>
 
@@ -96,3 +99,4 @@ def home():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
+
