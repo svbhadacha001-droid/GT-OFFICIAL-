@@ -33,8 +33,10 @@ html_design = """
         .rule-list li::before { content: '♛'; position: absolute; left: 0; }
         .hidden { display: none; }
         h1 { color: #ffd700; text-shadow: 2px 2px 10px #000; }
-        /* અક્ષરો નાના કરવા માટેનો ફેરફાર */
         .footer { font-size: 8px; color: #888; margin-top: 20px; letter-spacing: 1px; }
+        /* લીડરબોર્ડ ટેબલ સ્ટાઈલ */
+        .glory-table { width: 100%; color: white; border-collapse: collapse; margin-top: 10px; }
+        .glory-table td, .glory-table th { padding: 8px; border-bottom: 1px solid #444; }
     </style>
 </head>
 <body>
@@ -55,6 +57,16 @@ html_design = """
                     <li>Koi pan problem hoi guild leder sate vat karo</li>
                     <li>No hat other guild</li>
                 </ul>
+            </div>
+
+            <div class="box">
+                <h3 style="color: #ffd700; text-align: center;">🏆 TOP GLORY PLAYERS</h3>
+                <table class="glory-table">
+                    <tr><th>Player</th><th>Glory</th></tr>
+                    <tr><td>GT DADDY</td><td style="color:#ffd700">9500</td></tr>
+                    <tr><td>Player 2</td><td style="color:#ffd700">8200</td></tr>
+                    <tr><td>Player 3</td><td style="color:#ffd700">7500</td></tr>
+                </table>
             </div>
 
             <div class="box">
