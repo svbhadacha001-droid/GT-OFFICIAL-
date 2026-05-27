@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GT OFFICIAL GUILD</title>
+    <style>
+        /* આ વેબસાઈટનો દેખાવ (Design) છે */
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .box {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 15px;
+            width: 300px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 20px #ffd700;
+            text-align: center;
+        }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #444;
+            background: #2a2a2a;
+            color: white;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #25d366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #128c7e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box">
+        <h2 style="color: #ffd700;">WELCOME GT OFFICIAL</h2>
+        <p>JOIN GUILD</p>
+        
+        <input type="text" id="playerName" placeholder="તમારું નામ" required>
+        <input type="text" id="playerUID" placeholder="તમારી ગેમ UID" required>
+        
+        <button onclick="submitBoth()">SEND & JOIN 🚀</button>
+    </div>
+
+    <script>
+        async function submitBoth() {
+            let name = document.getElementById("playerName").value;
+            let uid = document.getElementById("playerUID").value;
+            let phoneNumber = "917990843839"; // તમારો વોટ્સએપ નંબર
+
+            // ચેક કરો કે વિગતો ભરી છે કે નહીં
+            if (name === "" || uid === "") {
+                alert("કૃપા કરીને નામ અને UID લખો!");
+                return;
+            }
+
+            // ૧. Web3Forms માં ડેટા મોકલો (તમારી કી સાથે)
+            const formData = new FormData();
+            formData.append("access_key", "B1d43e51-9bea-4e0a-8048-8830483ae5c9");
+            formData.append("Name", name);
+            formData.append("UID", uid);
+
+            try {
+                // ડેટા સબમિટ કરો
+                await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                // ૨. વોટ્સએપ મેસેજ તૈયાર કરો
+                let message = "હેલો, મારે ગિલ્ડમાં જોડાવું છે!%0A%0A" + 
+                              "નામ: " + name + "%0A" + 
+                              "UID: " + uid;
+                
+                let url = "https://wa.me/" + phoneNumber + "?text=" + message;
+                
+                // વોટ્સએપ ખોલો
+                window.open(url, '_blank');
+
+                alert("સફળતાપૂર્વક સબમિટ થઈ ગયું છે!");
+                
+                // બોક્સ ખાલી કરી નાખો
+                document.getElementById("playerName").value = "";
+                document.getElementById("playerUID").value = "";
+                
+            } catch (error) {
+                alert("કંઈક ભૂલ થઈ, ફરી પ્રયાસ કરો.");
+            }
+        }
+    </script>
+</body>
+</html>
