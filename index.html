@@ -5,14 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GT OFFICIAL GUILD</title>
     <style>
-        body { background-color: #121212; color: white; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 10px; }
-        .box { background: #1e1e1e; padding: 25px; border-radius: 15px; width: 100%; max-width: 400px; border: 2px solid #ffd700; box-shadow: 0 0 20px #ffd700; text-align: center; }
-        h1 { color: #ffd700; font-size: 24px; margin-bottom: 20px; }
-        .footer { font-size: 12px; color: #888; margin-top: 20px; }
-        .rules { text-align: left; margin: 20px 0; color: #eee; line-height: 1.6; }
-        input { width: 90%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white; }
-        button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px; }
-        button:hover { background: #128c7e; }
+        body { 
+            background-color: #121212; 
+            color: white; 
+            font-family: 'Arial', sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 15px; 
+        }
+        .box { 
+            background: #1e1e1e; 
+            padding: 30px; 
+            border-radius: 20px; 
+            width: 100%; 
+            max-width: 400px; 
+            border: 2px solid #ffd700; 
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); 
+            text-align: center; 
+        }
+        h1 { color: #ffd700; font-size: 26px; margin-bottom: 20px; text-transform: uppercase; }
+        .footer { font-size: 12px; color: #777; margin-top: 25px; }
+        .rules { text-align: left; margin: 20px 0; color: #ddd; line-height: 1.8; font-size: 15px; }
+        .rules ul { padding-left: 20px; }
+        input { 
+            width: 90%; 
+            padding: 14px; 
+            margin-bottom: 15px; 
+            border-radius: 8px; 
+            border: 1px solid #444; 
+            background: #2a2a2a; 
+            color: white; 
+            font-size: 16px;
+        }
+        button { 
+            width: 100%; 
+            padding: 14px; 
+            background: #25d366; 
+            color: white; 
+            border: none; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            font-size: 16px; 
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        button:hover { background: #128c7e; transform: scale(1.02); }
         .hidden { display: none; }
     </style>
 </head>
@@ -28,14 +69,16 @@
         <div id="rulesScreen" class="hidden">
             <h1>GUILD RULES</h1>
             <div class="rules">
-                1. Player daily<br>
-                2. Gujrati player online<br>
-                3. Weekly glori push 7/8 k<br>
-                4. Without guild test entry<br>
-                5. Koi pan problem hoi guild leder sate vat karo<br>
-                6. No hat other guild
+                <ul>
+                    <li>Player daily</li>
+                    <li>Gujrati player online</li>
+                    <li>Weekly glori push 7/8 k</li>
+                    <li>Without guild test entry</li>
+                    <li>Koi pan problem hoi guild leder sate vat karo</li>
+                    <li>No hat other guild</li>
+                </ul>
             </div>
-            <p><strong>THANK YOU FOR JOINING GT OFFICIAL 🤗</strong></p>
+            <p style="color: #ffd700; font-weight: bold;">THANK YOU FOR JOINING GT OFFICIAL 🤗</p>
             <button onclick="showForm()">JOIN GUILD</button>
         </div>
 
@@ -64,7 +107,7 @@
             let phoneNumber = "917990843839";
 
             if (name === "" || uid === "") {
-                alert("બધી વિગતો ભરો!");
+                alert("કૃપા કરીને નામ અને UID લખો!");
                 return;
             }
 
@@ -76,14 +119,21 @@
 
             await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
 
-            // WhatsApp Redirect
-            let message = "હેલો, મારે ગિલ્ડમાં જોડાવું છે!%0A%0A" + "નામ: " + name + "%0A" + "UID: " + uid;
+            // Professional WhatsApp Message
+            let message = "🌟 *NEW GUILD APPLICATION* 🌟%0A%0A" + 
+                          "━━━━━━━━━━━━━━━━━%0A" +
+                          "👤 *પ્લેયર નામ:* " + name + "%0A" + 
+                          "🆔 *ગેમ UID:* " + uid + "%0A" + 
+                          "━━━━━━━━━━━━━━━━━%0A" +
+                          "તપાસ કરીને રિપ્લાય આપો. 🚀";
+
             window.open("https://wa.me/" + phoneNumber + "?text=" + message, '_blank');
             
-            alert("સબમિટ થઈ ગયું છે!");
-            location.reload(); // ફોર્મ ફરીથી લોડ કરવા માટે
+            alert("સફળતાપૂર્વક સબમિટ થઈ ગયું છે!");
+            location.reload(); 
         }
     </script>
 </body>
 </html>
+
 
