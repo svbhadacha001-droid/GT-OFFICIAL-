@@ -5,70 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GT OFFICIAL GUILD</title>
     <style>
-        body { background-color: #121212; color: white; font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+        body { background-color: #121212; color: white; font-family: 'Arial', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 10px; }
         .box { background: #1e1e1e; padding: 25px; border-radius: 15px; width: 100%; max-width: 400px; border: 2px solid #ffd700; box-shadow: 0 0 20px #ffd700; text-align: center; }
-        h1 { color: #ffd700; margin-bottom: 10px; }
-        .rules { text-align: left; margin: 20px 0; color: #ccc; font-size: 14px; }
+        h1 { color: #ffd700; font-size: 24px; margin-bottom: 20px; }
+        .footer { font-size: 12px; color: #888; margin-top: 20px; }
+        .rules { text-align: left; margin: 20px 0; color: #eee; line-height: 1.6; }
         input { width: 90%; padding: 12px; margin-bottom: 15px; border-radius: 5px; border: 1px solid #444; background: #2a2a2a; color: white; }
-        button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 16px; margin-top: 10px; }
         button:hover { background: #128c7e; }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
 
     <div class="box">
-        <h1>WELCOME TO GT OFFICIAL</h1>
-        <p>ગિલ્ડમાં જોડાવા માટે નીચેની વિગતો ભરો:</p>
-
-        <div class="rules">
-            <strong>નિયમો:</strong>
-            <ul>
-                <li>ઓનલાઇન રહેવું ફરજિયાત છે.</li>
-                <li>ગિલ્ડ મેમ્બર્સ સાથે મૈત્રીપૂર્ણ રહેવું.</li>
-                <li>દર અઠવાડિયે Dog Tags પૂરા કરવા.</li>
-            </ul>
+        <div id="welcomeScreen">
+            <h1>WELCOME TO GT OFFICIAL</h1>
+            <button onclick="showRules()">ENTER</button>
+            <p class="footer">Created by SATISH</p>
         </div>
-        
-        <input type="text" id="playerName" placeholder="તમારું નામ" required>
-        <input type="text" id="playerUID" placeholder="તમારી ગેમ UID" required>
-        
-        <button onclick="submitBoth()">SEND & JOIN 🚀</button>
+
+        <div id="rulesScreen" class="hidden">
+            <h1>GUILD RULES</h1>
+            <div class="rules">
+                1. Player daily<br>
+                2. Gujrati player online<br>
+                3. Weekly glori push 7/8 k<br>
+                4. Without guild test entry<br>
+                5. Koi pan problem hoi guild leder sate vat karo<br>
+                6. No hat other guild
+            </div>
+            <p><strong>THANK YOU FOR JOINING GT OFFICIAL 🤗</strong></p>
+            <button onclick="showForm()">JOIN GUILD</button>
+        </div>
+
+        <div id="formScreen" class="hidden">
+            <h1>REGISTER</h1>
+            <input type="text" id="playerName" placeholder="તમારું નામ" required>
+            <input type="text" id="playerUID" placeholder="તમારી ગેમ UID" required>
+            <button onclick="submitData()">SUBMIT & JOIN</button>
+        </div>
     </div>
 
     <script>
-        async function submitBoth() {
+        function showRules() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('rulesScreen').classList.remove('hidden');
+        }
+
+        function showForm() {
+            document.getElementById('rulesScreen').classList.add('hidden');
+            document.getElementById('formScreen').classList.remove('hidden');
+        }
+
+        async function submitData() {
             let name = document.getElementById("playerName").value;
             let uid = document.getElementById("playerUID").value;
             let phoneNumber = "917990843839";
 
             if (name === "" || uid === "") {
-                alert("કૃપા કરીને નામ અને UID લખો!");
+                alert("બધી વિગતો ભરો!");
                 return;
             }
 
+            // Web3Forms API
             const formData = new FormData();
             formData.append("access_key", "B1d43e51-9bea-4e0a-8048-8830483ae5c9");
             formData.append("Name", name);
             formData.append("UID", uid);
 
-            try {
-                await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    body: formData
-                });
+            await fetch("https://api.web3forms.com/submit", { method: "POST", body: formData });
 
-                let message = "હેલો, મારે ગિલ્ડમાં જોડાવું છે!%0A%0A" + 
-                              "નામ: " + name + "%0A" + 
-                              "UID: " + uid;
-                
-                window.open("https://wa.me/" + phoneNumber + "?text=" + message, '_blank');
-                alert("સફળતાપૂર્વક સબમિટ થઈ ગયું છે!");
-                
-                document.getElementById("playerName").value = "";
-                document.getElementById("playerUID").value = "";
-            } catch (error) {
-                alert("કંઈક ભૂલ થઈ, ફરી પ્રયાસ કરો.");
-            }
+            // WhatsApp Redirect
+            let message = "હેલો, મારે ગિલ્ડમાં જોડાવું છે!%0A%0A" + "નામ: " + name + "%0A" + "UID: " + uid;
+            window.open("https://wa.me/" + phoneNumber + "?text=" + message, '_blank');
+            
+            alert("સબમિટ થઈ ગયું છે!");
+            location.reload(); // ફોર્મ ફરીથી લોડ કરવા માટે
         }
     </script>
 </body>
